@@ -4,6 +4,20 @@ body
 .flex
 	display: flex
 	flex-wrap: wrap
+	& > *
+		flex: 1
+
+#root
+	width: 1170px
+	margin: auto
+	padding: 0 30px
+
+
+input
+	display: block
+	padding: 5px 7px
+	width: 100%
+	margin: 20px 0
 
 .inputs
 	color: #222222
@@ -22,10 +36,7 @@ body
 		text-align: center
 		margin-bottom: 5px
 
-	input
-		display: block
-		padding: 5px 7px
-		width: 100%
+
 
 .input_wrong
 	background-color: rgba(255,0,0,0.1)
@@ -65,7 +76,7 @@ body
 
 .btn
 	display: block
-	margin: auto
+	width: 100%
 	border: none
 	font-size: 11px
 	padding: 10px 20px
