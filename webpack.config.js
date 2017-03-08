@@ -54,11 +54,5 @@ module.exports = {
             filename: "style.css",
             allChunks: true
         })
-    ],
-
-    devServer: {
-        host: "localhost",
-        port: 8000,
-        publicPath: "/public"
-    }
+    ]
 };
