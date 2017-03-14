@@ -9,7 +9,7 @@ export default class LabeledInput extends React.Component {
 	}
 
 	validate(e){
-		let val = this.refs.input.value;
+		let val = this.refs.input.value.trim();
 
 		if (val === ""){
 			this.refs.input.classList.add("input_wrong");
@@ -55,7 +55,7 @@ export default class LabeledInput extends React.Component {
 
 		}
 
-		this.props.onChange();
+		this.props.onChange(val);
 	}
 
 	render(){
