@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+
 import {createStore} from "redux";
-import fieldReducer from "./fieldReducer.js";
-import App from "./app.jsx";
+import {Provider} from "react-redux";
+import fieldReducer from "./reducers/fieldReducer.js";
+
+import App from "./containers/app.jsx";
 import "../styles/main.sass";
 
 const store = createStore(fieldReducer);
 
+
 const render = () => {
 	ReactDom.render(
-		<App
-			store={store}/>,
+		<Provider
+			store={store}
+		>
+			<App/>
+		</Provider>,
 		document.getElementById("root"));
 }
 

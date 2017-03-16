@@ -1,4 +1,4 @@
-const values = {
+const initialState = {
 	director_role: localStorage.getItem("director_role") || "Генеральному директору",
 	company: localStorage.getItem("company") || "OAO Фирма",
 	director_name: localStorage.getItem("director_name") || "Иванову Ивану Ивановичу",
@@ -9,7 +9,7 @@ const values = {
 	initials: localStorage.getItem("initials") || "Петров П.П."
 };
 
-export default (state = values, action) => {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case "SET_FIELD":
 			switch (action.name) {
