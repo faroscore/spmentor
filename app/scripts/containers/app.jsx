@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import LabeledInput from '../components/labeledinput.jsx'
 
+import LabeledInput from '../components/labeledinput.jsx';
+import {connect} from "react-redux";
 import { setField } from "../actions"
 
-export default class App extends React.Component {
+class App extends React.Component {
 
 	render(){
+		console.log("App rendering");
 		const {store} = this.context;
+		const props = this.props;
 		return (
 				<div className="flex">
 					<div className="inputs">
@@ -106,21 +109,21 @@ export default class App extends React.Component {
 					</div>
 					<div className="document">
 						<div className="document-header">
-							<span className="document--generated">{store.getState().director_role}</span>
-							<span className="document--generated">{store.getState().company}</span>
+							<span className="document--generated">{props.director_role}</span>
+							<span className="document--generated">{props.company}</span>
 							<br/>
-							<span className="document--generated">{store.getState().director_name}</span>
+							<span className="document--generated">{props.director_name}</span>
 							<br/>
-							от <span className="document--generated">{store.getState().from}</span>
+							от <span className="document--generated">{props.from}</span>
 						</div>
 						<h1 className="document-title">Заявление</h1>
 						Прошу принять меня на работу 
-						в <span className="document--generated">{store.getState().section} </span>
-						<span className="document--generated">{store.getState().company}</span> на должность
-						<span className="document--generated">{store.getState().role}</span> с
-						<span className="document--generated">{store.getState().date}</span>.
+						в <span className="document--generated">{props.section} </span>
+						<span className="document--generated">{props.company}</span> на должность
+						<span className="document--generated">{props.role}</span> с
+						<span className="document--generated">{props.date}</span>.
 						<div className="document--sign"></div>
-						<span className="document--generated">{store.getState().initials}</span>
+						<span className="document--generated">{props.initials}</span>
 					</div>
 				</div>
 			)
@@ -130,3 +133,9 @@ export default class App extends React.Component {
 App.contextTypes = {
 	store: React.PropTypes.object
 }
+
+
+const mapStateToProps = (state) => {
+	return state;
+}
+export default connect(mapStateToProps)(App);

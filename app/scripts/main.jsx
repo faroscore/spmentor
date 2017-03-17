@@ -12,6 +12,7 @@ const store = createStore(fieldReducer);
 
 
 const render = () => {
+	console.log("dispatch called render");
 	ReactDom.render(
 		<Provider
 			store={store}
