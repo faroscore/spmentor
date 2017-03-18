@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {connect} from "react-redux";
 
 import LabeledInput from '../components/labeledinput.jsx';
-import {connect} from "react-redux";
 import { setField } from "../actions"
 
 class App extends React.Component {
 
 	render(){
-		console.log("App rendering");
 		const {store} = this.context;
 		const props = this.props;
 		return (
@@ -136,6 +135,7 @@ App.contextTypes = {
 
 
 const mapStateToProps = (state) => {
-	return state;
+	return state.fieldReducer;
 }
+
 export default connect(mapStateToProps)(App);

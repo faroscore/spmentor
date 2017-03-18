@@ -14,7 +14,7 @@ export default class LabeledInput extends React.Component {
 			
 		labeledInputValidation(val, //текущее значение
 			this.props.name, // значение для проверки
-			function(){console.log("input tests passed")}, // onSuccess
+			null, // onSuccess
 			function(){
 				this.refs.input.classList.add("input_wrong")
 				}.bind(this) // onError
