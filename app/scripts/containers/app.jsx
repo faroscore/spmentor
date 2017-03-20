@@ -8,7 +8,6 @@ import { setField } from "../actions"
 class App extends React.Component {
 
 	render(){
-		const {store} = this.context;
 		const props = this.props;
 		return (
 				<div className="flex">
@@ -17,10 +16,8 @@ class App extends React.Component {
 							caption="Должность принимающего заявление"
 							name = "director_role"
 							onChange={
-								(val) => 
-									store.dispatch(
-										setField("director_role",val)
-									)
+								(val) =>
+									props.setField("director_role",val)
 								}
 						/>
 
@@ -29,9 +26,7 @@ class App extends React.Component {
 							name = "company"
 							onChange={
 								(val) => 
-									store.dispatch(
-										setField("company",val)
-									)
+									props.setField("company",val)
 								}
 						/>
 
@@ -40,9 +35,7 @@ class App extends React.Component {
 							name = "director_name"
 							onChange={
 								(val) => 
-									store.dispatch(
-										setField("director_name",val)
-									)
+									props.setField("director_name",val)
 								}
 						/>
 
@@ -51,9 +44,7 @@ class App extends React.Component {
 							name = "name"
 							onChange={
 								(val) => 
-									store.dispatch(
-										setField("name",val)
-									)
+									props.setField("from",val)
 								}
 						/>
 
@@ -61,10 +52,8 @@ class App extends React.Component {
 							caption="Название отдела"
 							name = "section"
 							onChange={
-								(val) => 
-									store.dispatch(
-										setField("section",val)
-									)
+								(val) =>
+									props.setField("section",val)
 								}
 						/>
 
@@ -73,9 +62,7 @@ class App extends React.Component {
 							name = "role"
 							onChange={
 								(val) => 
-									store.dispatch(
-										setField("role",val)
-									)
+									props.setField("role",val)
 								}
 						/>		
 
@@ -84,9 +71,7 @@ class App extends React.Component {
 							name = "date"
 							onChange={
 								(val) => 
-									store.dispatch(
-										setField("date",val)
-									)
+									props.setField("date",val)
 								}
 						/>
 
@@ -94,10 +79,8 @@ class App extends React.Component {
 							caption="Ваши инициалы"
 							name = "initials"
 							onChange={
-								(val) => 
-									store.dispatch(
-										setField("initials",val)
-									)
+								(val) =>
+									props.setField("initials",val)
 								}
 						/>
 						<button className="btn" onClick={()=>{
@@ -129,13 +112,17 @@ class App extends React.Component {
 	}
 }
 
-App.contextTypes = {
-	store: React.PropTypes.object
-}
-
 
 const mapStateToProps = (state) => {
-	return state.fieldReducer;
+	return state.field;
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setField: (name,val) => {
+			dispatch(setField(name,val));
+		}
+	};
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import {createStore,combineReducers} from "redux";
+import {createStore} from "redux";
 import {Provider} from "react-redux";
-import fieldReducer from "./reducers/fieldReducer.js";
+
+import reducer from "./reducers";
 
 import App from "./containers/app.jsx";
 import "../styles/main.sass";
 
-const store = createStore(combineReducers({fieldReducer}));
+const store = createStore(reducer);
 
 
 const render = () => {

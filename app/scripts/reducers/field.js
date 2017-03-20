@@ -45,5 +45,5 @@ const test = () => {
 
 if (NODE_ENV === "development") {
     test();
-    console.log("fieldReducer.js passed tests");
+    console.log("field.js passed tests");
 }
