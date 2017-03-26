@@ -2,8 +2,8 @@ import React from 'react';
 
 export default class Library extends React.Component{
 	render(){
-		let books = this.props.libraryStore.getState().libraryReducer;
-		let filter = this.props.libraryStore.getState().filterReducer;
+		let books = this.props.books;
+		let filter = this.props.filter;
 		if (filter){
 			books = books.filter((book) => book.title.toLowerCase().includes(filter.toLowerCase()))
 		}
@@ -14,8 +14,4 @@ export default class Library extends React.Component{
 		)
 	}
 
-}
-
-Library.propTypes = {
-	libraryStore: React.PropTypes.object.isRequired
 }

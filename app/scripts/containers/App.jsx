@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import libraryStore from './libraryStore.jsx';
 
 // MODULES
-import AddBook from './AddBook.jsx';
-import Filter from './Filter.jsx';
-import Library from './Library.jsx';
+import AddBook from '../components/AddBook.jsx';
+import Filter from '../components/Filter.jsx';
+import Library from '../components/Library.jsx';
 
 // STYLES
-import "../styles/main.sass";
+import "../../styles/main.sass";
 
 class App extends React.Component {
 	render() {
