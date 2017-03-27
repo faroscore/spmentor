@@ -6,7 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     context: __dirname + "/app",
     entry: {
-        bundle: ["webpack-dev-server/client?", "./scripts/main.jsx"],
+        bundle:  NODE_ENV === "development" ? ["webpack-dev-server/client?", "./scripts/main.jsx"] : "./scripts/main.jsx",
     },
     output: {
         path: __dirname + "/public",
@@ -54,11 +54,5 @@ module.exports = {
             filename: "style.css",
             allChunks: true
         })
-    ],
-
-    devServer: {
-        host: "localhost",
-        port: 8000,
-        publicPath: "/public"
-    }
+    ]
 };

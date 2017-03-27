@@ -14,10 +14,8 @@ class App extends React.Component {
 			return (
 				<div className="flex">
 					<div>
-						<AddBook
-							libraryStore = {libraryStore}/>
-						<Filter 
-							libraryStore = {libraryStore}/>
+						<AddBook/>
+						<Filter/>
 						<button 
 							className="btn" 
 							onClick={
@@ -35,12 +33,5 @@ class App extends React.Component {
 			)
 	}
 }
-
-const render = () => {
-	ReactDom.render(<App/>, document.getElementById("root"));
-}
-
-render();
-libraryStore.subscribe(render);
 
 export default App;

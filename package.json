@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "node dev.js",
     "build": "set NODE_ENV=build&&webpack",
     "deploy": "npm run build&&gh-pages -d public -b master"
   },
@@ -28,6 +28,7 @@
     "gh-pages": "^0.12.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "webpack": "^2.2.1"
   },
