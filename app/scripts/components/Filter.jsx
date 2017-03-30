@@ -9,11 +9,7 @@ export default class Filter extends React.Component{
 
 	setFilter(){
 		var val = this.textInput.value;
-		if (val){
-			this.props.libraryStore.dispatch({type: 'SET_FILTER', filter: val})
-		} else{
-			this.props.libraryStore.dispatch({type: 'REMOVE_FILTER'})
-		}
+		this.props.setFilter(val);
 	}
 
 	render(){
@@ -30,6 +26,3 @@ export default class Filter extends React.Component{
 	}
 }
 
-Filter.propTypes = {
-	libraryStore: React.PropTypes.object.isRequired
-}

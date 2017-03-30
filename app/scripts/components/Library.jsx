@@ -9,7 +9,26 @@ export default class Library extends React.Component{
 		}
 		return (
 			<ul>
-				{books.map((book,index) => <li key={index+1}>{book.title}</li>)}
+				{
+					books.length === 0 ? <li>Нет ни одной книги</li> : ""
+				}
+				{
+
+					books.map(
+						(book,index) => 
+						<li key={index+1}> 
+							{book.title},
+							{book.pages} стр., 
+							{ book.in_stock == true ? " в наличии" : " нет в наличии" }
+							<span 
+								className="remove-ic"
+								onClick={() => this.props.removeBook(index)}
+							> 
+							</span>
+
+						</li>
+					)
+				}
 			</ul>
 		)
 	}

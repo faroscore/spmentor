@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {connect} from "react-redux";
+import * as actions from "../actions";
 
 // MODULES
 import AddBook from '../components/AddBook.jsx';
@@ -11,11 +13,22 @@ import "../../styles/main.sass";
 
 class App extends React.Component {
 	render() {
+			let props = this.props;
 			return (
 				<div className="flex">
 					<div>
-						<AddBook/>
-						<Filter/>
+						<AddBook
+							addBook = {
+								(title,pages,in_stock) =>  props.addBook(title,pages,in_stock)
+								}
+							changeBook = {
+								(index,title,pages,in_stock) => props.changeBook(index,title,pages,in_stock)
+							}
+							/>
+						<Filter 
+							setFilter = { 
+								(value) => props.setFilter(value)
+							}/>
 						<button 
 							className="btn" 
 							onClick={
@@ -27,11 +40,29 @@ class App extends React.Component {
 							}>Очистить список</button>
 					</div>
 					<Library
-						libraryStore = {libraryStore}/>
+						books = {props.lib}
+						filter = {props.filter}
+						removeBook = {(index) => props.removeBook(index)}/>
 				</div>
 
 			)
 	}
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		lib: state.lib,
+		filter: state.filter
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setFilter: (value) => dispatch(actions.setFilter(value)),
+		addBook: (title,pages,in_stock) => dispatch(actions.addBook(title,pages,in_stock)),
+		changeBook: (index,title,pages,in_stock) => dispatch(actions.changeBook(index,title,pages,in_stock)),
+		removeBook: (index) => dispatch(actions.removeBook(index))
+	}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

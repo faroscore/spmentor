@@ -40,8 +40,8 @@ module.exports = {
             test: /\.sass$/,
             loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'sass-loader'])
         }, {
-            test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-            loader: "file?name=[name].[ext]"
+            test: /\.(html|png|jpg|svg|ttf|eot|woff|woff2)$/,
+            loader: "file-loader?name=[path][name].[ext]"
         }]
     },
 

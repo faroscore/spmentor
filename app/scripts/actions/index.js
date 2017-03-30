@@ -1,27 +1,40 @@
-
-export default const addBook = (name) => {
-	return {
-		type: "ADD_BOOK",
-		name
-	}
+// library actions
+export const addBook = (title, pages, in_stock) => {
+    return {
+        type: "ADD_BOOK",
+        title,
+        pages,
+        in_stock
+    }
 }
 
-export default const removeBook = (id) => {
-	return {
-		type: "REMOVE_BOOK",
-		id
-	}
+export const removeBook = (index) => {
+    return {
+        type: "REMOVE_BOOK",
+        index
+    }
 }
 
-export default const setFilter = (value) => {
-	return {
-		type: "SET_FILTER",
-		value
-	}
+export const changeBook = (index, title, pages, in_stock) => {
+    return {
+        type: "CHANGE_BOOK",
+        index,
+        title,
+        pages,
+        in_stock
+    }
 }
 
-export default const removeFilter = () => {
-	return {
-		type: "REMOVE_FILTER"
-	}
+// filter actions
+export const setFilter = (value) => {
+    return {
+        type: "SET_FILTER",
+        value
+    }
+}
+
+export const removeFilter = () => {
+    return {
+        type: "REMOVE_FILTER"
+    }
 }
