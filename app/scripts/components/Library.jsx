@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 export default class Library extends React.Component{
 	render(){
@@ -17,7 +18,7 @@ export default class Library extends React.Component{
 					books.map(
 						(book,index) => 
 						<li key={index+1}> 
-							{book.title},
+							<Link to={{pathname: "items/" + index }}>{book.title}</Link>,
 							{book.pages} стр., 
 							{ book.in_stock == true ? " в наличии" : " нет в наличии" }
 							<span 

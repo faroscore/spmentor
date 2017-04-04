@@ -44,7 +44,6 @@ class App extends React.Component {
 						filter = {props.filter}
 						removeBook = {(index) => props.removeBook(index)}/>
 				</div>
-
 			)
 	}
 }
@@ -66,3 +65,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
+
