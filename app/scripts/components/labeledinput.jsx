@@ -15,8 +15,12 @@ export default class LabeledInput extends React.Component {
 		labeledInputValidation(val, //текущее значение
 			this.props.name, // значение для проверки
 			null, // onSuccess
-			function(){
-				this.refs.input.classList.add("input_wrong")
+			function(msg){
+				var error = document.createElement("span");
+				error.textContent = msg;
+				error.classList.add("labeled-input--error");
+				this.refs.input.parentElement.appendChild(error);
+				this.refs.input.classList.add("input_wrong");
 				}.bind(this) // onError
 			); 
 
@@ -34,8 +38,17 @@ export default class LabeledInput extends React.Component {
 							name={this.props.name} 
 							placeholder={this.props.caption} 
 							type="text" 
-							onBlur={this.validate} 
-							onFocus={(e)=>{e.target.classList.remove("input_wrong")}}/>
+							onBlur={this.validate}
+							defaultValue={this.props.value}
+							onFocus={
+								(e)=>{
+									if (e.target.classList.contains("input_wrong")){
+										e.target.classList.remove("input_wrong");
+										e.target.parentElement.querySelector(".labeled-input--error").remove()
+									}
+									
+								}}
+							/>
 					</label>
 				</div>
 			)

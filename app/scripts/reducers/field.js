@@ -8,8 +8,9 @@ const initialState = {
     from: localStorage.getItem("from") || "Петрова Петра Петровича",
     section: localStorage.getItem("section") || "отдел заказов",
     role: localStorage.getItem("role") || "технический специалист",
-    date: localStorage.getItem("date") || "21.12.2012",
-    initials: localStorage.getItem("initials") || "Петров П.П."
+    date: localStorage.getItem("date") || "21-12-2012",
+    initials: localStorage.getItem("initials") || "Петров П.П.",
+    email: localStorage.getItem("email") || "recruit@mail.ru"
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,7 +21,11 @@ export default function reducer(state = initialState, action) {
 
             localStorage.setItem(name, value);
             let newState = Object.assign({}, state);
-            newState[name] = value;
+            if (value) {
+                newState[name] = value;
+            } else {
+                newState[name] = initialState[name];
+            }
 
             return newState;
         default:
