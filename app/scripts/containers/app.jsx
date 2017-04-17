@@ -3,12 +3,17 @@ import ReactDom from 'react-dom';
 import {connect} from "react-redux";
 
 import LabeledInput from '../components/labeledinput.jsx';
-import { setField } from "../actions"
+import { setField } from "../actions";
+import {RussianName} from "../utilities/names.js";
 
 class App extends React.Component {
 
 	render(){
 		const props = this.props;
+		let from = props.from.split(" ");
+		let initials = from[0] + " " + from[1][0] + "." + from[2][0] + ".";
+		let name = new RussianName(from[0],from[1],from[2]);
+		let parsedName = name.fullName(name.gcaseRod);
 		return (
 				<div className="flex">
 					<div className="inputs">
@@ -43,7 +48,7 @@ class App extends React.Component {
 						/>
 
 						<LabeledInput 
-							caption="Ваше ФИО в род.падеже"
+							caption="Ваше ФИО"
 							name = "name"
 							value={props.from}
 							onChange={
@@ -82,15 +87,6 @@ class App extends React.Component {
 								}
 						/>
 
-						<LabeledInput 
-							caption="Ваши инициалы"
-							name = "initials"
-							value={props.initials}
-							onChange={
-								(val) =>
-									props.setField("initials",val)
-								}
-						/>
 
 						<LabeledInput 
 							caption="Ваш email"
@@ -115,7 +111,7 @@ class App extends React.Component {
 							<br/>
 							<span className="document--generated">{props.director_name}</span>
 							<br/>
-							от <span className="document--generated">{props.from}</span>
+							от <span className="document--generated">{parsedName}</span>
 						</div>
 						<h1 className="document-title">Заявление</h1>
 						Прошу принять меня на работу 
@@ -124,7 +120,7 @@ class App extends React.Component {
 						<span className="document--generated">{props.role}</span> с
 						<span className="document--generated">{props.date}</span>.
 						<div className="document--sign"></div>
-						<span className="document--generated">{props.initials}</span>
+						<span className="document--generated">{initials}</span>
 						<br/>
 						Email для связи: <span className="document--generated">{props.email}</span>
 					</div>

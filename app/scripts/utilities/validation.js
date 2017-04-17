@@ -7,15 +7,18 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
     //     throw new Error(msg);
     // }
     if (val === "") {
+        msg = "Поле не должно быть пустым";
+        onError(msg);
         if (onSuccess) {
             onSuccess();
+
         }
         return;
     }
 
     if (type.includes("name")) {
         if (!/([а-яА-Я]+(\ )+){2}([а-яА-Я]+){1}/.test(val)) {
-            msg = "fio should be constructed from 3 words";
+            msg = "ФИО должно состоять из 3 слов";
             onError(msg);
             throw new Error(msg);
         }
@@ -23,7 +26,7 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
 
     if (type === "date") {
         if (!/\d{2}-\d{2}-\d{4}/.test(val)) {
-            msg = "Date format should be in format DD-MM-YYYY";
+            msg = "Формат даты должен быть DD-MM-YYYY";
             onError(msg);
             throw new Error(msg);
         }
@@ -31,20 +34,20 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
         let date = val.split("-");
 
         if (+date[0] > 31 || +date[0] < 1) {
-            msg = "Date day should be between 1 and 31";
+            msg = "День должен быть между 1 и 31 числом";
             onError(msg);
             throw new Error(msg);
         }
 
         if (+date[1] > 12 || +date[1] < 1) {
-            msg = "Date month should be between 1 and 12";
+            msg = "Месяц должен быть между 1 и 12";
             onError(msg);
             throw new Error(msg);
 
         }
 
         if (+date[2] < 0) {
-            msg = "Date year should be above or equal zero";
+            msg = "Год не может быть отрицательным";
             onError(msg);
             throw new Error(msg);
         }
@@ -52,15 +55,7 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
         let jsDate = new Date(date[2], --date[1], date[0]);
 
         if (jsDate.getDate() != date[0] || jsDate.getMonth() != date[1] || jsDate.getFullYear() != date[2]) {
-            msg = "This date does not exist";
-            onError(msg);
-            throw new Error(msg);
-        }
-    }
-
-    if (type === "initials") {
-        if (!/([а-яА-Я]* [А-Я]\.[А-Я]\.)/.test(val)) {
-            msg = "Initials should be in format Surname N.M.";
+            msg = "Такой даты не существует";
             onError(msg);
             throw new Error(msg);
         }
@@ -68,8 +63,8 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
 
     if (type === "email") {
         console.log(val);
-        if (!/[a-z]+[a-z0-9]*@([a-z]+\.)+[a-z]+/i.test(val)) {
-            msg = "Email should be in format name@hostname";
+        if (!/[a-z0-9]+@([a-z]+\.)+[a-z]+/i.test(val)) {
+            msg = "Эл.почта должна быть в виде name@hostname";
             onError(msg);
             throw new Error(msg);
         }

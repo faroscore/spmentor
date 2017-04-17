@@ -5,11 +5,10 @@ const initialState = {
     director_role: localStorage.getItem("director_role") || "Генеральному директору",
     company: localStorage.getItem("company") || "OAO Фирма",
     director_name: localStorage.getItem("director_name") || "Иванову Ивану Ивановичу",
-    from: localStorage.getItem("from") || "Петрова Петра Петровича",
+    from: localStorage.getItem("from") || "Петров Петр Петрович",
     section: localStorage.getItem("section") || "отдел заказов",
     role: localStorage.getItem("role") || "технический специалист",
     date: localStorage.getItem("date") || "21-12-2012",
-    initials: localStorage.getItem("initials") || "Петров П.П.",
     email: localStorage.getItem("email") || "recruit@mail.ru"
 };
 
@@ -21,11 +20,7 @@ export default function reducer(state = initialState, action) {
 
             localStorage.setItem(name, value);
             let newState = Object.assign({}, state);
-            if (value) {
-                newState[name] = value;
-            } else {
-                newState[name] = initialState[name];
-            }
+            newState[name] = value;
 
             return newState;
         default:
