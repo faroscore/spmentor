@@ -1,15 +1,16 @@
 import assert from "assert";
 import { setField } from "../actions";
+import {getStorageItem} from "../utilities/storageHelper.js";
 
 const initialState = {
-    director_role: localStorage.getItem("director_role") || "Генеральному директору",
-    company: localStorage.getItem("company") || "OAO Фирма",
-    director_name: localStorage.getItem("director_name") || "Иванову Ивану Ивановичу",
-    from: localStorage.getItem("from") || "Петров Петр Петрович",
-    section: localStorage.getItem("section") || "отдел заказов",
-    role: localStorage.getItem("role") || "технический специалист",
-    date: localStorage.getItem("date") || "21-12-2012",
-    email: localStorage.getItem("email") || "recruit@mail.ru"
+    director_role: getStorageItem("director_role") || "Генеральному директору",
+    company: getStorageItem("company") || "OAO Фирма",
+    director_name: getStorageItem("director_name") || "Иванову Ивану Ивановичу",
+    from: getStorageItem("from") || "Петров Петр Петрович",
+    section: getStorageItem("section") || "отдел заказов",
+    role: getStorageItem("role") || "технический специалист",
+    date: getStorageItem("date") || "21-12-2012",
+    email: getStorageItem("email") || "recruit@mail.ru"
 };
 
 export default function reducer(state = initialState, action) {
@@ -17,8 +18,6 @@ export default function reducer(state = initialState, action) {
         case "SET_FIELD":
             let name = action.name;
             let value = action.value;
-
-            localStorage.setItem(name, value);
             let newState = Object.assign({}, state);
             newState[name] = value;
 

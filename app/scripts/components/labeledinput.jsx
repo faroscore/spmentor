@@ -7,6 +7,9 @@ export default class LabeledInput extends React.Component {
 	constructor() {
 		super();
 		this.validate = this.validate.bind(this);
+		this.state = {
+			errorMsg: undefined
+		};
 	}
 
 	validate(e){
@@ -17,10 +20,7 @@ export default class LabeledInput extends React.Component {
 			null, // onSuccess
 			function(msg){
 				var error = document.createElement("span");
-				error.textContent = msg;
-				error.classList.add("labeled-input--error");
-				this.refs.input.parentElement.appendChild(error);
-				this.refs.input.classList.add("input_wrong");
+				this.setState({errorMsg: msg});
 				}.bind(this) // onError
 			); 
 
@@ -40,15 +40,18 @@ export default class LabeledInput extends React.Component {
 							type="text" 
 							onBlur={this.validate}
 							defaultValue={this.props.value}
+							className={(this.state.errorMsg) ? "input_wrong" : {}}
 							onFocus={
 								(e)=>{
-									if (e.target.classList.contains("input_wrong")){
-										e.target.classList.remove("input_wrong");
-										e.target.parentElement.querySelector(".labeled-input--error").remove()
-									}
+									if (this.state.errorMsg)
+										this.setState({errorMsg: undefined})
 									
 								}}
 							/>
+						{ (this.state.errorMsg) ? 
+							<span className="labeled-input--error">
+								{this.state.errorMsg}
+							</span> : "" }
 					</label>
 				</div>
 			)

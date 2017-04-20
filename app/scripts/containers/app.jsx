@@ -4,16 +4,14 @@ import {connect} from "react-redux";
 
 import LabeledInput from '../components/labeledinput.jsx';
 import { setField } from "../actions";
-import {RussianName} from "../utilities/names.js";
+import {nameGenerator} from "../utilities/names.js";
+import {setStorageItem} from "../utilities/storageHelper.js";
 
 class App extends React.Component {
 
 	render(){
 		const props = this.props;
-		let from = props.from.split(" ");
-		let initials = from[0] + " " + from[1][0] + "." + from[2][0] + ".";
-		let name = new RussianName(from[0],from[1],from[2]);
-		let parsedName = name.fullName(name.gcaseRod);
+		let {initials,parsedName} = nameGenerator(props.from);
 		return (
 				<div className="flex">
 					<div className="inputs">
@@ -98,10 +96,7 @@ class App extends React.Component {
 								}
 						/>
 
-						<button className="btn" onClick={()=>{
-							localStorage.clear();
-							location.reload();
-						}}>Очистить localStorage</button>
+						<button className="btn" onClick={clearStorage}>Очистить localStorage</button>
 
 					</div>
 					<div className="document">
@@ -138,8 +133,13 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setField: (name,val) => {
 			dispatch(setField(name,val));
+			setStorageItem(name,val);
 		}
 	};
 }
 
+const clearStorage = () => {
+	localStorage.clear();
+	location.reload();
+}
 export default connect(mapStateToProps,mapDispatchToProps)(App);

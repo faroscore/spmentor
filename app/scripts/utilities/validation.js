@@ -25,7 +25,7 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
     }
 
     if (type === "date") {
-        if (!/\d{2}-\d{2}-\d{4}/.test(val)) {
+        if (!/\d{2}-\d{2}-\d{4}$/.test(val)) {
             msg = "Формат даты должен быть DD-MM-YYYY";
             onError(msg);
             throw new Error(msg);
@@ -62,8 +62,7 @@ export const labeledInputValidation = (val, type, onSuccess, onError) => {
     }
 
     if (type === "email") {
-        console.log(val);
-        if (!/[a-z0-9]+@([a-z]+\.)+[a-z]+/i.test(val)) {
+        if (!/^[a-z0-9]+@([a-z]+\.)+[a-z]+$/i.test(val)) {
             msg = "Эл.почта должна быть в виде name@hostname";
             onError(msg);
             throw new Error(msg);
