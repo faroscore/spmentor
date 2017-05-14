@@ -7,8 +7,12 @@ export default class LabeledInput extends React.Component {
 	constructor() {
 		super();
 		this.validate = this.validate.bind(this);
+		this.validationSucceed = this.validationSucceed.bind(this);
+		this.validationFailed = this.validationFailed.bind(this);
+		this.clearErrors = this.clearErrors.bind(this);
 		this.state = {
-			errorMsg: undefined
+			errorMsg: undefined,
+			error: false
 		};
 	}
 
@@ -17,41 +21,49 @@ export default class LabeledInput extends React.Component {
 			
 		labeledInputValidation(val, //текущее значение
 			this.props.name, // значение для проверки
-			null, // onSuccess
-			function(msg){
-				var error = document.createElement("span");
-				this.setState({errorMsg: msg});
-				}.bind(this) // onError
+			this.validationSucceed, // onSuccess
+			this.validationFailed // onError
 			); 
 
 
 		this.props.onChange(val);
 	}
 
+	validationSucceed(){
+
+	}
+
+	validationFailed(msg){
+		this.setState({errorMsg: msg, error: true});
+	}
+
+	clearErrors(){
+		this.setState({errorMsg: undefined, error: false});
+	}
+
 	render(){
+		let {caption,name,value} = this.props;
+		let {error,errorMsg} = this.state;
+
+		let className = error ? "input_wrong" : "";
+
 		return(
 				<div className="labeled-input">
 					<label>
-						<span>{this.props.caption}</span>
+						<span>{caption}</span>
 						<input 
 							ref="input" 
-							name={this.props.name} 
-							placeholder={this.props.caption} 
+							name={name} 
+							placeholder={caption} 
 							type="text" 
 							onBlur={this.validate}
-							defaultValue={this.props.value}
-							className={(this.state.errorMsg) ? "input_wrong" : {}}
-							onFocus={
-								(e)=>{
-									if (this.state.errorMsg)
-										this.setState({errorMsg: undefined})
-									
-								}}
+							defaultValue={value}
+							className={className}
+							onFocus={this.clearErrors}
 							/>
-						{ (this.state.errorMsg) ? 
 							<span className="labeled-input--error">
-								{this.state.errorMsg}
-							</span> : "" }
+								{errorMsg}
+							</span> 
 					</label>
 				</div>
 			)
