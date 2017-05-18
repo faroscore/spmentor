@@ -23,16 +23,23 @@ const reducer = (state = initialState, action) => {
             break;
 
         case 'CHANGE_BOOK':
-            newState = [...state];
-            if (index > state.length - 1 || state.length === 0){
-                alert('Нет такого элемента')
+            let index = action.index;
+            if (index > state.length - 1) {
+                alert('Нет такого элемента');
                 return state;
             }
-            let index = action.index;
-            let item = newState[index];
-            newState[index]["title"] = action.title || item["title"];
-            newState[index]["pages"] = action.pages || item["pages"];
-            newState[index]["in_stock"] = action.in_stock || item["in_stock"];
+
+            let item = state[index];
+
+            newState = [
+                ...state.slice(0, action.index), {
+                    title: action.title || item["title"],
+                    pages: action.pages || item["pages"],
+                    in_stock: action.in_stock
+                },
+                ...state.slice(action.index + 1)
+            ]
+
             break;
 
         default:
@@ -42,8 +49,6 @@ const reducer = (state = initialState, action) => {
 
     }
 
-    // Сохраняем новое состояние
-    localStorage.setItem("lib", JSON.stringify(newState));
     return newState;
 }
 
