@@ -1,30 +1,42 @@
 import React from 'react';
 import {connect} from "react-redux";
-
+import {Link, withRouter} from "react-router-dom";
 import {removeBook} from "../actions";
+
+const queryString = require('query-string');
 
 class Library extends React.Component {
 
     render() {
-        let {books, filter} = this.props;
+        let {books} = this.props;
+        let filter = queryString.parse(location.search).str;
+
         if (filter) {
             books = books.filter(
                 (book) => book.title.toLowerCase().includes(filter.toLowerCase())
             )
         }
-        return (
-            <ul>
 
+        return (
+            
+            <ol>
                 {
-                    books.length === 0
-                        ? <li>Нет ни одной книги</li>
-                        : ""
+                    books.length === 0 ?
+                        <li>Нет ни одной книги</li> : ""
                 }
                 {
 
                     books.map(
                         (book, index) => <li key={index + 1}>
-                            {book.title}, {book.pages}
+                            <Link
+                                to={{
+                                    pathname: "/items/" + (
+                                        index + 1
+                                    )
+                                }}>
+                                {book.title}
+                            </Link>
+                            , {book.pages}
                             стр., {
                                 book.in_stock == true
                                     ? " в наличии"
@@ -33,21 +45,23 @@ class Library extends React.Component {
                             <span className="remove-ic" onClick={() => this.props.removeBook(index)}></span>
 
                         </li>
+
                     )
                 }
-            </ul>
+            </ol>
+
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {books: state.lib, filter: state.filter}
-}
+const mapStateToProps = (state) => ({books: state.lib})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        removeBook: (index) => dispatch(removeBook(index))
+const mapDispatchToProps = (dispatch) => ({
+    removeBook(index) {
+        dispatch(removeBook(index))
     }
-}
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Library)
+const filteredLibrary = connect(mapStateToProps, mapDispatchToProps)(Library);
+
+export default withRouter(filteredLibrary)

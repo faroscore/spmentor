@@ -112,18 +112,18 @@ class AddBook extends React.Component {
                     value="Изменить книгу"
                     className="btn"/>
             </div>
+
         )
     }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addBook   : (title, pages, in_stock) => dispatch(addBook(title, pages, in_stock)),
-        changeBook: (index, title, pages, in_stock) => dispatch(
-            changeBook(index, title, pages, in_stock)
-        )
+const mapDispatchToProps = (dispatch) => ({
+    addBook(title, pages, in_stock) {
+        dispatch(addBook(title, pages, in_stock))
+    },
+    changeBook(index, title, pages, in_stock) {
+        dispatch(changeBook(index, title, pages, in_stock))
     }
-}
+})
 
 export default connect(null, mapDispatchToProps)(AddBook);

@@ -24,17 +24,3 @@ export const changeBook = (index, title, pages, in_stock) => {
         in_stock
     }
 }
-
-// filter actions
-export const setFilter = (value) => {
-    return {
-        type: "SET_FILTER",
-        value
-    }
-}
-
-export const removeFilter = () => {
-    return {
-        type: "REMOVE_FILTER"
-    }
-}

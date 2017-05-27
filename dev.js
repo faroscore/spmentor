@@ -7,7 +7,10 @@ var opn = require("opn");
 
 var server = new webpackDevServer(compiler, {
     stats: { colors: true },
-    publicPath: "/public"
+    // publicPath: "/public"
+    historyApiFallback:{
+    	index: "/public/index.html"
+    }
 });
 opn("http://localhost:8000");
 server.listen(8000);

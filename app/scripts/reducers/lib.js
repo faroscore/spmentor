@@ -23,8 +23,8 @@ const reducer = (state = initialState, action) => {
             break;
 
         case 'CHANGE_BOOK':
-            let index = action.index;
-            if (index > state.length - 1) {
+            let index = action.index - 1;
+            if (index > state.length - 1 || index < 0) {
                 alert('Нет такого элемента');
                 return state;
             }
@@ -32,12 +32,12 @@ const reducer = (state = initialState, action) => {
             let item = state[index];
 
             newState = [
-                ...state.slice(0, action.index), {
+                ...state.slice(0, index), {
                     title: action.title || item["title"],
                     pages: action.pages || item["pages"],
                     in_stock: action.in_stock
                 },
-                ...state.slice(action.index + 1)
+                ...state.slice(index + 1)
             ]
 
             break;
