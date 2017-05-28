@@ -1,6 +1,6 @@
 import assert from "assert";
-import { setField } from "../actions";
-import {getStorageItem} from "../utilities/storageHelper.js";
+import { setField } from "actions";
+import {getStorageItem} from "utilities/storageHelper.js";
 
 const initialState = {
     director_role: getStorageItem("director_role") || "Генеральному директору",

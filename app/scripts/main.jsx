@@ -4,10 +4,10 @@ import ReactDom from 'react-dom';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 
-import reducer from "./reducers";
+import reducer from "reducers";
 
-import App from "./components/App.jsx";
-import "../styles/main.sass";
+import App from "containers/App.jsx";
+import "styles/main.sass";
 
 const store = createStore(reducer);
 
@@ -25,6 +25,3 @@ const render = () => {
 render()
 
 store.subscribe(render);
-
-
-// export default

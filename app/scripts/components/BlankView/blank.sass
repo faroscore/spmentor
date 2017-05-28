@@ -1,0 +1,32 @@
+.blank
+	flex: 1
+	line-height: 22px
+	box-shadow: 0 0 10px
+	padding: 40px 30px
+
+.header
+	width: 300px
+	float: right
+
+.title
+	clear: both
+	margin: 100px 0 20px
+	text-align: center
+
+.sign
+	display: block
+	width: 200px
+	margin-bottom: 50px
+	border-bottom: 1px solid black
+	&:after
+		content: "(Личная подпись)"
+		display: block
+		position: relative
+		top: 25px
+		text-align: center
+
+.generated
+	display: inline-block
+	text-align: center
+	& + .document--generated
+		margin-left: 5px

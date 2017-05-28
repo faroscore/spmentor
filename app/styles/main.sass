@@ -1,76 +1,9 @@
 body
 	font: 14px "PTSans",sans-serif
 
-.flex
+.app
 	display: flex
 	flex-wrap: wrap
-
-.inputs
-	color: #222222
-	padding: 20px 15px
-
-.document,.inputs
-	flex: 1
-
-.labeled-input
-	display: inline-block
-	position: relative
-	width: 50%
-	padding: 0 15px
-	margin-bottom: 20px
-	span
-		display: block
-		text-align: center
-		margin-bottom: 5px
-
-	input
-		display: block
-		padding: 5px 7px
-		width: 100%
-
-.input_wrong
-	background-color: rgba(255,0,0,0.1)
-	border-color: red
-
-.labeled-input--error
-	display: block
-	position: absolute
-	font-size: 12px
-	color: red
-	left: 25px
-	bottom: -20px
-
-.document
-	line-height: 22px
-	box-shadow: 0 0 10px
-	padding: 40px 30px
-
-.document-header
-	width: 300px
-	float: right
-
-.document-title
-	clear: both
-	margin: 100px 0 20px
-	text-align: center
-
-.document--sign
-	display: block
-	width: 200px
-	margin-bottom: 50px
-	border-bottom: 1px solid black
-	&:after
-		content: "(Личная подпись)"
-		display: block
-		position: relative
-		top: 25px
-		text-align: center
-
-.document--generated
-	display: inline-block
-	text-align: center
-	& + .document--generated
-		margin-left: 5px
 
 .btn
 	display: block
