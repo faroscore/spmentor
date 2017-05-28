@@ -1,5 +1,8 @@
 import assert from "assert";
-const initialState = JSON.parse(localStorage.getItem("lib")) || [];
+
+import {getStorageItem} from "utilities/storageHelper.js"
+
+const initialState = JSON.parse(getStorageItem("lib")) || [];
 
 const reducer = (state = initialState, action) => {
     let newState;
