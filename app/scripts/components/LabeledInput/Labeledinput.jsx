@@ -2,39 +2,29 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {labeledInputValidation} from "utilities/validation.js";
 
-import "./inputs.sass"
+import "./LabeledInput.sass"
 
 export default class LabeledInput extends React.Component {
 
   constructor() {
     super();
-    this.validate         = this
-      .validate
-      .bind(this);
-    this.validationFailed = this
-      .validationFailed
-      .bind(this);
-    this.clearErrors      = this
-      .clearErrors
-      .bind(this);
-    this.state            = {
+    this.validate = this.validate.bind(this);
+    this.validationFailed = this.validationFailed.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
+    this.state = {
       valid   : true,
       errorMsg: undefined
     };
   }
 
   validate(e) {
-    let val = this
-      .refs
-      .input
-      .value
-      .trim();
+    let val = this.refs.input.value.trim();
 
     labeledInputValidation(val, this.props.name, this.validationFailed);
 
     this
       .props
-      .onChange(this.props.name,val);
+      .onChange(this.props.refer,val);
   }
 
   validationFailed(msg) {

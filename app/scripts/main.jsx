@@ -6,7 +6,7 @@ import {Provider} from "react-redux";
 
 import reducer from "reducers";
 
-import App from "containers/App.jsx";
+import App from "containers/App";
 import "styles/main.sass";
 
 const store = createStore(reducer);

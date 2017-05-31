@@ -6,12 +6,17 @@ import LabeledInput from 'components/LabeledInput';
 import { setField } from "actions";
 import {setStorageItem, clearStorage} from "utilities/storageHelper.js";
 
-import inputs from "scripts/inputs.js"
+import inputs from "scripts/inputs"
 
 class Inputs extends React.Component {
 
-	setField(name,val){
-		this.props.setField(name,val);
+	constructor(props) {
+		super(props);
+		this.fieldChanged = this.fieldChanged.bind(this);
+	}
+
+	fieldChanged(ref,val){
+		this.props.setField(ref,val);
 	};
 
 	render(){
@@ -20,8 +25,9 @@ class Inputs extends React.Component {
 				<LabeledInput 
 					caption={input.caption}
 					name = {input.name}
+					refer = {input.ref}
 					value={props[input.ref]}
-					onChange={this.setField.bind(this)}
+					onChange={this.fieldChanged}
 					key={index}
 				/>
 		))
@@ -46,9 +52,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setField: (name,val) => {
-			dispatch(setField(name,val));
-			setStorageItem(name,val);
+		setField: (ref,val) => {
+			dispatch(setField(ref,val));
+			setStorageItem(ref,val);
 		}
 	};
 }
