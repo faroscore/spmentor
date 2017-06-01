@@ -38,13 +38,17 @@ input
 	color: white
 	background-color: #3ea7d0
 
-.remove-ic
+.remove-ic,.change-ic
 	display: inline-block
 	cursor: pointer
 	width: 15px
 	height: 15px
 	margin: 0 5px
-	background: url("../img/remove.svg") 50% 50% no-repeat
+	background-image: url("../img/remove.svg")
+	background-size: cover
 	transition: all .3s
 	&:hover
 		opacity: 0.7
+
+.change-ic
+	background-image: url("../img/change.svg")

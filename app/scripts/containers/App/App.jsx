@@ -1,9 +1,9 @@
 import React from 'react';
 
 // MODULES
-import AddBook from 'containers/AddBook.jsx';
-import Filter from 'containers/Filter.jsx';
-import Library from 'containers/Library.jsx';
+import AddBook from 'containers/AddBook';
+import Filter from 'containers/Filter';
+import Library from 'containers/Library';
 import {clearStorage} from "utilities/storageHelper.js"
 
 // STYLES

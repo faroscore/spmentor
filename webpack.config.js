@@ -65,7 +65,8 @@ module.exports = {
 					reducers: path.resolve(__dirname,"app/scripts/reducers"),
 					actions: path.resolve(__dirname,"app/scripts/actions"),
 					utilities: path.resolve(__dirname,"app/scripts/utilities"),
-					styles: path.resolve(__dirname,"app/styles")
+					styles: path.resolve(__dirname,"app/styles"),
+					img: path.resolve(__dirname,"app/img")
 			}
 		}
 

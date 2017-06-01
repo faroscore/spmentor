@@ -14,6 +14,7 @@ class LibraryView extends React.Component {
               <li key={index + 1}>
                 {book.title}, {book.pages} стр., { book.in_stock == true ? " в наличии" : " нет в наличии" }
                 <span className="remove-ic" onClick={() => this.props.removeBook(index)}></span>
+                <span className="change-ic" onClick={() => this.props.setBookToChange(index, book.title, book.pages, book.in_stock)}></span>
               </li>
             ) 
           }

@@ -38,3 +38,21 @@ export const removeFilter = () => {
         type: "REMOVE_FILTER"
     }
 }
+
+
+//book change actions
+export const setBookToChange = (index, title, pages, in_stock) => {
+    return {
+        type: "SET_BOOK_TO_CHANGE",
+        index,
+        title,
+        pages,
+        in_stock
+    }
+}
+
+export const clearBookToChange = (index, title, pages, in_stock) => {
+    return {
+        type: "CLEAR_BOOK_TO_CHANGE"
+    }
+}
